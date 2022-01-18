@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#greenBand{
+    height: 150px;
+    background-color: #007e7d;
+    position: relative;
+}
+
+.ms-bg-color-1{
+    background-color: #d3d6d1;
+}
+
+#ms-background{
+    height: 100vh;
+    padding: 0;
+}
+
+.profile{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.ms-position-absolute{
+    position: absolute;
+    top: 50px;
+    left: 10vw;
+}
+
+.container-left{
+    width: 30%;
+    height: 60px;
+}
+
+.container-rigth{
+    width: 70%;
+    height: 60px;
+}
+
+.ms-bg-color-2{
+    background-color: #e8e8e8;
+}

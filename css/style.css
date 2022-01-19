@@ -31,16 +31,15 @@
     left: 10vw;
 }
 
-.container-left{
-    width: 30%;
-    height: 60px;
-}
-
-.container-rigth{
-    width: 70%;
-    height: 60px;
-}
-
 .ms-bg-color-2{
     background-color: #e8e8e8;
+}
+
+.ms-bg-color-3{
+    background-color: #7ccefd;
+    
+}
+
+.ms-text-color-3{
+    color: #7ccefd;
 }

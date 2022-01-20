@@ -21,101 +21,138 @@
             <div class="container ms-position-absolute row g-0">
 
                 <!-- sinistra -->
+                <!-- head sinistra -->
                 <section class="col-4 flex-column">
-                    <div
-                        class="g-0 ms-bg-color-2 p-2 border row row-cols-2 justify-content-between">
-                        <div class="col">
-                            <img class="profile float-start"
-                                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
-
-                            <p class="fw-bold ms-2 float-start">
-                                Nome Utente
-                            </p>
-                        </div>
-                        <div class="fs-4 text-secondary col text-end">
-                            <i class="bi bi-chat-square-fill"></i>
-                            <i class="bi bi-plus-circle-dotted"></i>
-                            <i class="bi bi-three-dots-vertical"></i>
-                        </div>
-                    </div>
-
-                    <div class="ms-bg-color-3 p-3 row g-0 border border-bottom-0">
-                        <div class="col">
-                            <div class="float-start profile bg-light text-center p-1 fs-4 ms-text-color-3">
-                                <i class="bi bi-bell-slash-fill"></i>
-                            </div>
-                            <div class="ms-2 float-start">
-                                <p class="fw-bold m-0">
-                                    Ricevi notifiche di nuovi messaggi
-                                </p>
-                                <p class="text-secondary text-decoration-underline m-0">Attiva notifiche desktop</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat"
-                            v-model="cerca">
-                    </div>
-
-                    <!-- visualizzazione contatti -->
-                    <div class="bg-light p-3 row g-0 border border-top-0" v-for="element in contatti">
-                        <div class="col">
-                            <div class="float-start profile text-center">
+                    <div class="ms-column-background border">
+                        <div class="g-0 ms-bg-color-2 p-2 border row row-cols-2 justify-content-between">
+                            <div class="col">
                                 <img class="profile float-start"
-                                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
 
-                            </div>
-                            <div class="ms-2 float-start">
-                                <p class="fw-bold m-0">
-                                    {{element.name}}
+                                <p class="fw-bold ms-2 float-start">
+                                    {{nome}} {{cognome}}
                                 </p>
-                                <p class="text-secondary text-decoration-underline m-0">Attiva notifiche desktop</p>
+                            </div>
+                            <div class="fs-4 text-secondary col text-end">
+                                <i class="bi bi-chat-square-fill"></i>
+                                <i class="bi bi-plus-circle-dotted"></i>
+                                <i class="bi bi-three-dots-vertical"></i>
                             </div>
                         </div>
 
+                        <div class="ms-bg-color-3 p-3 row g-0 border border-bottom-0">
+                            <div class="col">
+                                <div class="float-start profile bg-light text-center p-1 fs-4 ms-text-color-3">
+                                    <i class="bi bi-bell-slash-fill"></i>
+                                </div>
+                                <div class="ms-2 float-start">
+                                    <p class="fw-bold m-0">
+                                        Ricevi notifiche di nuovi messaggi
+                                    </p>
+                                    <p class="text-secondary text-decoration-underline m-0">Attiva notifiche desktop</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- funzione di ricerca contatti -->
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat"
+                                v-model="cerca">
+                        </div>
+
+                        <!-- visualizzazione contatti -->
+
+                        <div class="bg-light p-2 row g-0 border border-top-0" v-for="(element, index) in contatti" @click="chatSelector(index)">
+                            <div class="col">
+                                <div class="float-start">
+                                    <img class="profile"
+                                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+
+                                </div>
+                                <div class="ms-2 float-start">
+
+                                    <span class="fw-bold">
+                                        {{element.name}}
+                                    </span>
+                                    <p class="text-truncate ms-max-width-contatti">
+                                        {{element.messages.at(-1).text}}
+                                    </p>
+                                </div>
+                                <div class="ms-2 float-end">
+                                    <span class="ms-fs-8 text-secondary text-end m-0">
+                                        {{element.messages.at(-1).date}}
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
 
                 </section>
 
-
+                <!-- destra -->
                 <!-- head desrta -->
                 <section class="col-8">
-                    <div class="ms-bg-color-2 pt-1">
-                        <img class="profile float-start"
-                            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
-                        <div class="float-start ms-2">
-                            <p class="fw-bold m-0">
-                                Nome persona selezionata
-                            </p>
-                            <p class="text-secondary">Ultimo accesso (data)</p>
+                    <div class="ms-column-background-2 row row-cols-1 g-0">
+                        <div
+                            class="col ms-bg-color-2 p-2 row row-cols-2 justify-content-between g-0 border align-self-start">
+                            <div class="col">
+                                <div class="float-start">
+                                    <img class="profile"
+                                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+                                </div>
+                                <div class="ms-2 float-start">
+                                    <p class="fw-bold m-0">
+                                        {{contatti[corrente].name}}
+                                    </p>
+                                    <p class="text-secondary  m-0">
+                                        Ultimo accesso: {{contatti[corrente].messages.at(-1).date}}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col text-end fs-4 text-secondary">
+                                <i class="bi bi-search"></i>
+                                <i class="bi bi-paperclip"></i>
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </div>
                         </div>
 
-                        <div class="float-end fs-4 text-secondary">
-                            <i class="bi bi-search"></i>
-                            <i class="bi bi-paperclip"></i>
-                            <i class="bi bi-three-dots-vertical"></i>
+                        <!-- for messaggi -->
+                        <div class="col align-self-start" v-for="(elementi, index) in contatti[corrente].messages">
+                            <div v-if="elementi.status === 'sent'">
+                                <span class="ms-bg-color-4 p-3 rounded me-4 float-end">
+                                    {{elementi.text}}
+                                </span>
+
+                            </div>
+                            <div v-if="elementi.status === 'received'">
+                                <span class="bg-white p-3 rounded ms-4">
+                                    {{elementi.text}}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- input messaggi -->
+                        <div class="col p-2 ms-bg-color-2 row g-0 align-self-end">
+
+                            <div class="col-1 text-center fs-4 text-secondary">
+                                <i class="bi bi-emoji-smile"></i>
+                            </div>
+                            <div class="col-10">
+                                <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat"
+                                    v-model="cerca">
+                            </div>
+                            <div class="col-1 text-center fs-4 text-secondary">
+                                <i class="bi bi-mic-fill"></i>
+                            </div>
+
                         </div>
                     </div>
                 </section>
-
-                <!-- corpo sinistra -->
-                <!-- <section>
-                    <div class="row flex-column container-rigth">
-                        <div class="ms-bg-color-3 p-3">
-                            <img class="profile float-start"
-                                src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
-                            <div class="float-start ms-2">
-                                <p class="fw-bold m-0">
-                                    Nome persona selezionata
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section> -->
 
             </div>
 

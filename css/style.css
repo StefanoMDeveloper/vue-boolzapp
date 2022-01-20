@@ -5,7 +5,7 @@
 }
 
 #greenBand{
-    height: 150px;
+    height: 100px;
     background-color: #007e7d;
     position: relative;
 }
@@ -40,6 +40,28 @@
     
 }
 
+.ms-bg-color-4{
+    background-color: #cef1b3;
+}
+
 .ms-text-color-3{
     color: #7ccefd;
+}
+
+.ms-column-background{
+    height: 90vh;
+    background-color: white;
+}
+
+.ms-column-background-2{
+    height: 90vh;
+    
+}
+
+.ms-fs-8{
+    font-size: 12px;
+}
+
+.ms-max-width-contatti{
+    max-width: 150px;
 }

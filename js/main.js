@@ -2,6 +2,9 @@ let app = new Vue({
     el: "#app",
     data: {
         cerca: null,
+        nome: "Joseph",
+        cognome: "Joshua",
+        corrente: 0,
         contatti: [
             {
                 name: 'Michele',
@@ -87,5 +90,10 @@ let app = new Vue({
                 ],
             },
         ]
+    },
+    methods:{
+        chatSelector: function(index){
+            this.corrente = index;
+        }
     }
 });

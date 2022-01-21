@@ -65,3 +65,11 @@
 .ms-max-width-contatti{
     max-width: 150px;
 }
+
+.ms-sentMessages{
+    max-width: 350px;
+}
+
+.nascondi{
+    display: none;
+}

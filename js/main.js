@@ -1,14 +1,15 @@
 let app = new Vue({
     el: "#app",
     data: {
-        cerca: null,
-        nome: "Joseph",
-        cognome: "Joshua",
+        cercaContatti: "",
+        inviaTesto: "",
+        risposta: null,
+        nome: "Joseph Joshua",
         corrente: 0,
         contatti: [
             {
                 name: 'Michele',
-                avatar: '_1',
+                avatar: 'https://avatarfiles.alphacoders.com/310/thumb-1920-310334.png',
                 visible: true,
                 messages: [
                     {
@@ -30,7 +31,7 @@ let app = new Vue({
             },
             {
                 name: 'Fabio',
-                avatar: '_2',
+                avatar: 'https://avatarfiles.alphacoders.com/306/thumb-1920-306831.jpg',
                 visible: true,
                 messages: [
                     {
@@ -52,7 +53,7 @@ let app = new Vue({
             },
             {
                 name: 'Samuele',
-                avatar: '_3',
+                avatar: 'https://avatarfiles.alphacoders.com/307/thumb-1920-307074.jpg',
                 visible: true,
                 messages: [
                     {
@@ -74,7 +75,7 @@ let app = new Vue({
             },
             {
                 name: 'Luisa',
-                avatar: '_4',
+                avatar: 'https://avatarfiles.alphacoders.com/308/thumb-1920-308016.jpg',
                 visible: true,
                 messages: [
                     {
@@ -94,6 +95,31 @@ let app = new Vue({
     methods:{
         chatSelector: function(index){
             this.corrente = index;
+        },
+        answerMesssage: function(){
+            let oggRecived = {
+                date : `${dayjs().hour()}:${dayjs().minute()}`,
+                text: "Ok",
+                status: "received"
+            }
+            this.contatti[this.corrente].messages.push(oggRecived);
+        },
+        sendMessage: function(){
+            let oggSend = {
+                date : `${dayjs().hour()}:${dayjs().minute()}`,
+                text: this.inviaTesto,
+                status: "sent"
+            }
+            this.contatti[this.corrente].messages.push(oggSend);
+            this.inviaTesto = "";
+            this.risposta = setTimeout(this.answerMesssage,2000);
+        },
+        filtraContatti: function(){
+            this.contatti.forEach(elemento => {
+                elemento.visible = elemento.name.toLowerCase().includes(this.cercaContatti.toLowerCase());
+                console.log(elemento.visible);
+            });
         }
-    }
+    },
+    
 });

@@ -27,10 +27,10 @@
                         <div class="g-0 ms-bg-color-2 p-2 border row row-cols-2 justify-content-between">
                             <div class="col">
                                 <img class="profile float-start"
-                                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+                                    src="https://avatarfiles.alphacoders.com/308/thumb-1920-308668.png">
 
                                 <p class="fw-bold ms-2 float-start">
-                                    {{nome}} {{cognome}}
+                                    {{nome}}
                                 </p>
                             </div>
                             <div class="fs-4 text-secondary col text-end">
@@ -59,16 +59,16 @@
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-search"></i></span>
                             <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat"
-                                v-model="cerca">
+                                v-model="cercaContatti" @keyup="filtraContatti()">
                         </div>
 
                         <!-- visualizzazione contatti -->
 
-                        <div class="bg-light p-2 row g-0 border border-top-0" v-for="(element, index) in contatti" @click="chatSelector(index)">
-                            <div class="col">
+                        <div class="bg-light row g-0 border border-top-0" v-for="(element, index) in contatti"
+                            @click="chatSelector(index)" :class="{nascondi: !element.visible}">
+                            <div class="col contatto p-2">
                                 <div class="float-start">
-                                    <img class="profile"
-                                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+                                    <img class="profile" :src="element.avatar">
 
                                 </div>
                                 <div class="ms-2 float-start">
@@ -101,15 +101,14 @@
                             class="col ms-bg-color-2 p-2 row row-cols-2 justify-content-between g-0 border align-self-start">
                             <div class="col">
                                 <div class="float-start">
-                                    <img class="profile"
-                                        src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+                                    <img class="profile" :src="contatti[corrente].avatar">
                                 </div>
                                 <div class="ms-2 float-start">
                                     <p class="fw-bold m-0">
                                         {{contatti[corrente].name}}
                                     </p>
                                     <p class="text-secondary  m-0">
-                                        Ultimo accesso: {{contatti[corrente].messages.at(-1).date}}
+                                        Ultimo accesso {{contatti[corrente].messages.at(-1).date}}
                                     </p>
                                 </div>
                             </div>
@@ -124,15 +123,19 @@
                         <!-- for messaggi -->
                         <div class="col align-self-start" v-for="(elementi, index) in contatti[corrente].messages">
                             <div v-if="elementi.status === 'sent'">
-                                <span class="ms-bg-color-4 p-3 rounded me-4 float-end">
+                                <span class="ms-bg-color-4 p-3 rounded me-4 float-end ms-sentMessages text-break">
                                     {{elementi.text}}
+                                    <span class="ms-fs-8 text-secondary">{{elementi.date}}</span>
                                 </span>
+
 
                             </div>
                             <div v-if="elementi.status === 'received'">
-                                <span class="bg-white p-3 rounded ms-4">
+                                <span class="bg-white p-3 rounded ms-4 text-break">
                                     {{elementi.text}}
+                                    <span class="ms-fs-8 text-secondary">{{elementi.date}}</span>
                                 </span>
+
                             </div>
                         </div>
 
@@ -143,8 +146,8 @@
                                 <i class="bi bi-emoji-smile"></i>
                             </div>
                             <div class="col-10">
-                                <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat"
-                                    v-model="cerca">
+                                <input type="text" class="form-control" placeholder="Scrivi un messaggio da inviare"
+                                    v-model="inviaTesto" @keyup.enter="sendMessage()">
                             </div>
                             <div class="col-1 text-center fs-4 text-secondary">
                                 <i class="bi bi-mic-fill"></i>
@@ -163,6 +166,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 
